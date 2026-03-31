@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Prova 1</title>
+    <link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+    <header class="header">
+        <h2>Musicals</h2>
+        <div class="header_action__wrapper">
+            <ul class="list horizontal header_actions">
+                <li>Inicio</li>
+                <li>Sobre</li>
+                <li>Contato</li>
+            </ul>
+        </div>
+    </header>
+    <section class="section music">
+        <img id="main_image" src="resources/angus-bon.png" class="music_image"/>
+        <p>
+            O rock é um dos generos musicais mais legais existentes no planeta. O rock tem diversos subgrupos, 
+            como o Heavy Metal. Um bom exemplo de musica de rock boa é esse 
+            <a href="https://www.youtube.com/watch?v=3f2g4RMfhS0" target="_blank">aqui</a>
+        </p>
+    </section>
+    <div class="section_divider"></div>
+    <section class="section">
+        <div class="a7x_recommendations_div">
+            <p>Uma das bandas de metalcore mais aclamadas pelo publico é o Avenged Sevenfold. Algumas musicas para iniciantes:</p>
+            <ol class="list vertical">
+                <li>Afterlife</li>
+                <li>Nightmare</li>
+                <li>Buried Alive</li>
+                <li>Bat Country</li>
+                <li>The stage</li>
+                <li>Nobody</li>
+            </ol>
+        </div>
+    </section>
+    <div class="section_divider"></div>
+    <section class="section">
+        <div class="likes_button_container">
+            <p id="likes_label">Likes: 0</p>
+            <div id="like_button" class="button">
+                <p>Gostei</p>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.getElementById('main_image')?.addEventListener('click', () => {
+            window.alert('Simplesmente o rock em uma imagem')
+        });
+        document.getElementById("like_button")?.addEventListener('click', onLikeButtonClicked );
+
+        const likesLabel = document.getElementById('likes_label');
+        let count = 0;
+
+        function onLikeButtonClicked() {
+            count++;
+
+            likesLabel.textContent = 'Likes: ' + count;
+        }
+    </script>
+</body>
+</html>
