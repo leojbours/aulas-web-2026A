@@ -1,20 +1,24 @@
 <?php
 
-class Database
-{
-    public $connection;
+class Database {
+    private static ?PDO $instance = null;
 
-    public function __construct()
-    {
+    private function __construct() {
         $host = "localhost";
-        $port = "5432";
-        $db   = "instrumentos";
-        $user = "postgres";
-        $pass = "postgres";
+        $porta = "5432";
+        $database = "instrument_shop";
+        $usuario = "postgres";
+        $senha = "postgres";
 
-        $dsn = "pgsql:host=$host;port=$port;dbname=$db";
+        $dsn = "pgsql:host=$host;port=$porta;dbname=$database";
+        self::$instance = new PDO($dsn, $usuario, $senha);
+    }
 
-        $this->connection = new PDO($dsn, $user, $pass);
-        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    public static function getInstance() {
+        if (self::$instance == null) {
+            new self();
+        }
+
+        return self::$instance;
     }
 }

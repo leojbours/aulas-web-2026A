@@ -15,6 +15,7 @@ $instruments = $instrumentController->listar();
 <head>
     <meta charset="UTF-8">
     <title>Nova Compra</title>
+    <link rel="stylesheet" href="../../resources/styles/default.css">
 </head>
 <body>
     <h2>Registrar Compra</h2>
@@ -34,5 +35,9 @@ $instruments = $instrumentController->listar();
         <br>
         <button type="submit">Registrar</button>
     </form>
+    <div class="nav-links">
+        <a href="../index.html">Voltar a tela inicial</a>
+        <a href="./TransactionList.php">Listar compras</a>
+    </div>
 </body>
 </html>

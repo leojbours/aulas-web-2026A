@@ -18,6 +18,5 @@ class InstrumentController
         );
         $dao = new InstrumentDao();
         $dao->salvar($instrument);
-        header("Location: lista.php");
     }
 }

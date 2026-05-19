@@ -5,18 +5,17 @@ require_once __DIR__ . '/../model/Purchase.php';
 class PurchaseDao
 {
     private $table = 'purchases';
-    private $connection;
+    private $db;
 
     public function __construct()
     {
-        $db = new Database();
-        $this->connection = $db->connection;
+        $this->db = Database::getInstance();
     }
 
     public function salvar($instrumentId, $transactionId)
     {
         $sql = "INSERT INTO $this->table (instrument_id, transaction_id) VALUES (?, ?)";
-        $stmt = $this->connection->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute([$instrumentId, $transactionId]);
     }
 }

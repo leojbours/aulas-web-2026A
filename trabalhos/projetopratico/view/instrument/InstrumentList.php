@@ -8,6 +8,7 @@ $instruments = $controller->listar();
 <head>
     <meta charset="UTF-8">
     <title>Instrumentos</title>
+    <link rel="stylesheet" href="../../resources/styles/default.css">
 </head>
 <body>
     <h2>Instrumentos cadastrados</h2>
@@ -35,6 +36,9 @@ $instruments = $controller->listar();
     <?php else: ?>
         <p>Nenhum instrumento cadastrado.</p>
     <?php endif; ?>
-    <a href="cadastra.php">Cadastrar novo instrumento</a>
+    <div class="nav-links">
+        <a href="../index.html">Voltar a página inicial</a>
+        <a href="./InstrumentRegistry.php">Cadastrar novo instrumento</a>
+    </div>
 </body>
 </html>

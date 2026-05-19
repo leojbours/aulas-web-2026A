@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Instrumento</title>
+    <link rel="stylesheet" href="../../resources/styles/default.css">
 </head>
 <body>
     <h2>Cadastro de Instrumento</h2>
@@ -25,6 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br>
         <button type="submit">Cadastrar</button>
     </form>
-    <a href="lista.php">Ver instrumentos cadastrados</a>
+    <div class="nav-links">
+        <a href="../index.html">Voltar a tela inicial</a>
+        <a href="./InstrumentList.php">Ver instrumentos cadastrados</a>
+    </div>
 </body>
 </html>

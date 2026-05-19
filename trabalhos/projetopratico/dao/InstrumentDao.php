@@ -5,25 +5,24 @@ require_once __DIR__ . '/../model/Instrument.php';
 class InstrumentDao
 {
     private $table = 'instruments';
-    private $connection;
+    private $db;
 
     public function __construct()
     {
-        $db = new Database();
-        $this->connection = $db->connection;
+        $this->db = Database::getInstance();
     }
 
     public function salvar(Instrument $instrument)
     {
         $sql = "INSERT INTO $this->table (name, description, price) VALUES (?, ?, ?)";
-        $stmt = $this->connection->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute([$instrument->getName(), $instrument->getDescription(), $instrument->getPrice()]);
     }
 
     public function listar()
     {
         $sql = "SELECT * FROM $this->table";
-        $stmt = $this->connection->query($sql);
+        $stmt = $this->db->query($sql);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $instruments = [];
@@ -41,7 +40,7 @@ class InstrumentDao
     public function buscarPorId($id)
     {
         $sql = "SELECT * FROM $this->table WHERE id = ?";
-        $stmt = $this->connection->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute([$id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 

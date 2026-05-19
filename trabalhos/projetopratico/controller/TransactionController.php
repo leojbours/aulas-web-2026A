@@ -16,6 +16,5 @@ class TransactionController
             $_POST['buyer_name'],
             $_POST['instrument_ids']
         );
-        header("Location: lista.php");
     }
 }

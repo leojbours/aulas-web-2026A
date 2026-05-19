@@ -8,6 +8,7 @@ $transactions = $controller->listar();
 <head>
     <meta charset="UTF-8">
     <title>Compras</title>
+    <link rel="stylesheet" href="../../resources/styles/default.css">
 </head>
 <body>
     <h2>Compras registradas</h2>
@@ -35,6 +36,9 @@ $transactions = $controller->listar();
     <?php else: ?>
         <p>Nenhuma compra registrada.</p>
     <?php endif; ?>
-    <a href="cadastra.php">Registrar nova compra</a>
+    <div class="nav-links">
+        <a href="../index.html">Voltar a tela inicial</a>
+        <a href="./TransactionRegistry.php">Registrar nova compra</a>
+    </div>
 </body>
 </html>

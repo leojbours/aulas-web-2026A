@@ -7,18 +7,17 @@ require_once __DIR__ . '/PurchaseDao.php';
 class TransactionDao
 {
     private $table = 'transactions';
-    private $connection;
+    private $db;
 
     public function __construct()
     {
-        $db = new Database();
-        $this->connection = $db->connection;
+        $this->db = Database::getInstance();
     }
 
     public function listar()
     {
         $sql = "SELECT * FROM $this->table ORDER BY occurred_at DESC";
-        $stmt = $this->connection->query($sql);
+        $stmt = $this->db->query($sql);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $transactions = [];
@@ -47,21 +46,21 @@ class TransactionDao
             $total += $instrument->getPrice();
         }
 
-        $this->connection->beginTransaction();
+        $this->db->beginTransaction();
         try {
             $sql = "INSERT INTO $this->table (buyer_name, total_value) VALUES (?, ?)";
-            $stmt = $this->connection->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->execute([$buyerName, $total]);
-            $transactionId = $this->connection->lastInsertId();
+            $transactionId = $this->db->lastInsertId();
 
             foreach ($instruments as $instrument) {
                 $purchaseDao->salvar($instrument->getId(), $transactionId);
             }
 
-            $this->connection->commit();
+            $this->db->commit();
             return $transactionId;
         } catch (Exception $e) {
-            $this->connection->rollBack();
+            $this->db->rollBack();
             throw $e;
         }
     }
