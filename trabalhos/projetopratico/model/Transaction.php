@@ -6,8 +6,7 @@ class Transaction
     private $occurredAt;
     private $totalValue;
 
-    public function __construct($buyerName, $totalValue, $occurredAt = null, $id = null)
-    {
+    public function __construct($buyerName, $totalValue, $occurredAt = null, $id = null) {
         $this->buyerName = $buyerName;
         $this->totalValue = $totalValue;
         $this->occurredAt = $occurredAt;

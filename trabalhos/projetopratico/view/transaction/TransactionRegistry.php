@@ -4,11 +4,11 @@ require_once __DIR__ . '/../../controller/InstrumentController.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller = new TransactionController();
-    $controller->salvar();
+    $controller->save();
 }
 
 $instrumentController = new InstrumentController();
-$instruments = $instrumentController->listar();
+$instruments = $instrumentController->findAll();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

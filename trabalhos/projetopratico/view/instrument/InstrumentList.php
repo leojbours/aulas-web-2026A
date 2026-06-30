@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../controller/InstrumentController.php';
 $controller = new InstrumentController();
-$instruments = $controller->listar();
+$instruments = $controller->findAll();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Aviso</title>
+</head>
+<body>
+  <h1>Cadastrar Aviso</h1>
+
+  <label>Título: <input type="text" id="title"></label><br><br>
+  <label>Descrição: <input type="text" id="description"></label><br><br>
+  <button id="btn">Cadastrar</button>
+
+  <pre id="response"></pre>
+
+  <script>
+    const button = document.getElementById('btn');
+    button.addEventListener('click', async function () {
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+
+      const response = await fetch('https://6a43deb16dba791499ab854a.mockapi.io/projetopratico/notices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, description }),
+      });
+
+      const data = await response.json();
+      document.getElementById('response').textContent = JSON.stringify(data);
+    });
+  </script>
+</body>
+</html>

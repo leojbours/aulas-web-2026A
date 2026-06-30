@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Consumo de APIs - BrasilAPI</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #222;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #0a5c36;
+  }
+
+  section {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-left: 5px solid #0a5c36;
+    border-radius: 6px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: #0a5c36;
+  }
+
+  input {
+    padding: 6px;
+    width: 200px;
+    margin-right: 8px;
+  }
+
+  button {
+    padding: 6px 14px;
+    background-color: #0a5c36;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #08502e;
+  }
+
+  .resultado {
+    margin-top: 12px;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .resultado ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Consumo de APIs - BrasilAPI</h1>
+<p>Abra o console do navegador (F12) para ver os dados completos retornados por cada API.</p>
+
+<!-- 1. CEP -->
+<section>
+  <h2>1. Consulta de CEP</h2>
+  <p>Endpoint: GET https://brasilapi.com.br/api/cep/v1/{cep}</p>
+  <input type="text" id="inputCep" placeholder="Digite um CEP (ex: 01311000)">
+  <button onclick="buscarCep()">Buscar</button>
+  <div class="resultado" id="resultadoCep"></div>
+</section>
+
+<!-- 2. Bancos -->
+<section>
+  <h2>2. Lista de Bancos</h2>
+  <p>Endpoint: GET https://brasilapi.com.br/api/banks/v1</p>
+  <button onclick="buscarBancos()">Listar bancos</button>
+  <div class="resultado" id="resultadoBancos"></div>
+</section>
+
+<!-- 3. DDD -->
+<section>
+  <h2>3. Consulta de DDD</h2>
+  <p>Endpoint: GET https://brasilapi.com.br/api/ddd/v1/{ddd}</p>
+  <input type="text" id="inputDdd" placeholder="Digite um DDD (ex: 11)">
+  <button onclick="buscarDdd()">Buscar</button>
+  <div class="resultado" id="resultadoDdd"></div>
+</section>
+
+<!-- 4. Feriados -->
+<section>
+  <h2>4. Feriados Nacionais</h2>
+  <p>Endpoint: GET https://brasilapi.com.br/api/feriados/v1/{ano}</p>
+  <input type="text" id="inputAno" placeholder="Digite um ano (ex: 2026)">
+  <button onclick="buscarFeriados()">Buscar</button>
+  <div class="resultado" id="resultadoFeriados"></div>
+</section>
+
+<!-- 5. CPTEC Cidades -->
+<section>
+  <h2>5. Cidades (CPTEC)</h2>
+  <p>Endpoint: GET https://brasilapi.com.br/api/cptec/v1/cidade/{nome}</p>
+  <input type="text" id="inputCidade" placeholder="Digite o nome da cidade (ex: Manaus)">
+  <button onclick="buscarCidade()">Buscar</button>
+  <div class="resultado" id="resultadoCidade"></div>
+</section>
+
+<!-- 6. CNPJ -->
+<section>
+  <h2>6. Consulta de CNPJ</h2>
+  <p>Endpoint: GET https://brasilapi.com.br/api/cnpj/v1/{cnpj}</p>
+  <input type="text" id="inputCnpj" placeholder="Digite um CNPJ (ex: 00394460005887)">
+  <button onclick="buscarCnpj()">Buscar</button>
+  <div class="resultado" id="resultadoCnpj"></div>
+</section>
+
+<script>
+
+  // 1. CEP
+  async function buscarCep() {
+    const cep = document.getElementById("inputCep").value;
+    const resposta = await fetch("https://brasilapi.com.br/api/cep/v1/" + cep);
+    const dados = await resposta.json();
+    console.log("CEP:", dados);
+    document.getElementById("resultadoCep").innerHTML =
+      "<p><strong>Rua:</strong> " + dados.street + "<br>" +
+      "<strong>Bairro:</strong> " + dados.neighborhood + "<br>" +
+      "<strong>Cidade:</strong> " + dados.city + " - " + dados.state + "<br>" +
+      "<strong>CEP:</strong> " + dados.cep + "</p>";
+  }
+
+  // 2. Bancos
+  async function buscarBancos() {
+    const resposta = await fetch("https://brasilapi.com.br/api/banks/v1");
+    const dados = await resposta.json();
+    console.log("Bancos:", dados);
+    let lista = "<ul>";
+    for (let i = 0; i < 10; i++) {
+      lista += "<li>" + dados[i].code + " - " + dados[i].fullName + "</li>";
+    }
+    lista += "</ul><p>Mostrando 10 de " + dados.length + " bancos (veja todos no console).</p>";
+    document.getElementById("resultadoBancos").innerHTML = lista;
+  }
+
+  // 3. DDD
+  async function buscarDdd() {
+    const ddd = document.getElementById("inputDdd").value;
+    const resposta = await fetch("https://brasilapi.com.br/api/ddd/v1/" + ddd);
+    const dados = await resposta.json();
+    console.log("DDD:", dados);
+    let lista = "<p><strong>Estado:</strong> " + dados.state + "</p><ul>";
+    dados.cities.forEach(cidade => {
+      lista += "<li>" + cidade + "</li>";
+    });
+    lista += "</ul>";
+    document.getElementById("resultadoDdd").innerHTML = lista;
+  }
+
+  // 4. Feriados
+  async function buscarFeriados() {
+    const ano = document.getElementById("inputAno").value;
+    const resposta = await fetch("https://brasilapi.com.br/api/feriados/v1/" + ano);
+    const dados = await resposta.json();
+    console.log("Feriados:", dados);
+    let lista = "<ul>";
+    dados.forEach(feriado => {
+      lista += "<li>" + feriado.date + " - " + feriado.name + "</li>";
+    });
+    lista += "</ul>";
+    document.getElementById("resultadoFeriados").innerHTML = lista;
+  }
+
+  // 5. CPTEC Cidades
+  async function buscarCidade() {
+    const nome = document.getElementById("inputCidade").value;
+    const resposta = await fetch("https://brasilapi.com.br/api/cptec/v1/cidade/" + nome);
+    const dados = await resposta.json();
+    console.log("Cidades:", dados);
+    let lista = "<ul>";
+    dados.forEach(cidade => {
+      lista += "<li>" + cidade.nome + " - " + cidade.estado + " (codigo: " + cidade.id + ")</li>";
+    });
+    lista += "</ul>";
+    document.getElementById("resultadoCidade").innerHTML = lista;
+  }
+
+  // 6. CNPJ
+  async function buscarCnpj() {
+    const cnpj = document.getElementById("inputCnpj").value;
+    const resposta = await fetch("https://brasilapi.com.br/api/cnpj/v1/" + cnpj);
+    const dados = await resposta.json();
+    console.log("CNPJ:", dados);
+    document.getElementById("resultadoCnpj").innerHTML =
+      "<p><strong>Razão Social:</strong> " + dados.razao_social + "<br>" +
+      "<strong>Nome Fantasia:</strong> " + dados.nome_fantasia + "<br>" +
+      "<strong>Município/UF:</strong> " + dados.municipio + " / " + dados.uf + "<br>" +
+      "<strong>Situação:</strong> " + dados.descricao_situacao_cadastral + "</p>";
+  }
+
+</script>
+
+</body>
+</html>

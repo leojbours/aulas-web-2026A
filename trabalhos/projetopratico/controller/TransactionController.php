@@ -3,16 +3,16 @@ require_once __DIR__ . '/../dao/TransactionDao.php';
 
 class TransactionController
 {
-    public function listar()
+    public function findAll()
     {
         $dao = new TransactionDao();
-        return $dao->listar();
+        return $dao->findAll();
     }
 
-    public function salvar()
+    public function save()
     {
         $dao = new TransactionDao();
-        $dao->salvar(
+        $dao->save(
             $_POST['buyer_name'],
             $_POST['instrument_ids']
         );

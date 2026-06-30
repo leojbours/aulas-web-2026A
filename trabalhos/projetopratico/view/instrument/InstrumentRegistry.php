@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../controller/InstrumentController.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller = new InstrumentController();
-    $controller->salvar();
+    $controller->save();
 }
 ?>
 <!DOCTYPE html>

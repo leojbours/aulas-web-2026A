@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../controller/TransactionController.php';
 $controller = new TransactionController();
-$transactions = $controller->listar();
+$transactions = $controller->findAll();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
