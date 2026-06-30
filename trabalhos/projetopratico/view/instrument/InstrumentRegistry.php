@@ -14,8 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $controller->save();
     }
-    header("Location: ./InstrumentList.php");
-    exit;
 }
 ?>
 <!DOCTYPE html>
