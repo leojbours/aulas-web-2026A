@@ -35,14 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Nome</label>
         <input type="text" name="name" value="<?= $person != null ? htmlspecialchars($person->getName()) : '' ?>" required>
 
+        <label>CEP</label>
+        <input type="text" name="cep" id="cep" value="<?= $person != null ? htmlspecialchars($person->getCEP()) : '' ?>" required>
+
         <label>Rua</label>
         <input type="text" name="adress_road" id="adress_road" value="<?= $person != null ? htmlspecialchars($person->getAdressRoad()) : '' ?>" required>
 
         <label>Número</label>
         <input type="text" name="adress_number" value="<?= $person != null ? htmlspecialchars($person->getAdressNumber()) : '' ?>" required>
-
-        <label>CEP</label>
-        <input type="text" name="cep" id="cep" value="<?= $person != null ? htmlspecialchars($person->getCEP()) : '' ?>" required>
 
         <label>Cidade</label>
         <input type="text" name="city" id="city" value="<?= $person != null ? htmlspecialchars($person->getCity()) : '' ?>" required>
