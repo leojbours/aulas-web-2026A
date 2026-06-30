@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/Env.php';
+
 class Database {
     private static ?PDO $instance = null;
 
