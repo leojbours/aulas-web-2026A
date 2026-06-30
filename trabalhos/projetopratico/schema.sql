@@ -32,4 +32,4 @@ CREATE TABLE IF NOT EXISTS person (
     city VARCHAR(255) NOT NULL,
     state VARCHAR(127) NOT NULL,
     CONSTRAINT pk_person PRIMARY KEY (id)
-);
+);  

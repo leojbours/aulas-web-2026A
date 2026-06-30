@@ -15,7 +15,6 @@
       <tr>
         <th>Título</th>
         <th>Descrição</th>
-        <th>Ações</th>
       </tr>
     </thead>
     <tbody id="table-body">
@@ -26,7 +25,7 @@
     const apiUrl = 'https://6a43deb16dba791499ab854a.mockapi.io/projetopratico/notices';
 
     document.getElementById('btn-add').addEventListener('click', function () {
-      window.location.href = './NoticeRegistry.php';
+      window.location.href = './notice-registry.html';
     });
 
     document.getElementById('btn-refresh').addEventListener('click', async function () {
@@ -51,17 +50,9 @@
         row.innerHTML = `
           <td>${notice.title}</td>
           <td>${notice.description}</td>
-          <td><button onclick="deleteNotice('${notice.id}')">Excluir</button></td>
         `;
         tableBody.appendChild(row);
       }
-    }
-
-    async function deleteNotice(id) {
-      if (!confirm('Tem certeza que deseja excluir este aviso?')) return;
-
-      await fetch(apiUrl + '/' + id, { method: 'DELETE' });
-      loadNotices();
     }
 
     loadNotices();
