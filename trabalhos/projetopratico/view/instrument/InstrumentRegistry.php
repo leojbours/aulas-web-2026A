@@ -1,30 +1,47 @@
 <?php
 require_once __DIR__ . '/../../controller/InstrumentController.php';
+
+$controller = new InstrumentController();
+$instrument = null;
+
+if (isset($_GET['id'])) {
+    $instrument = $controller->findById($_GET['id']);
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $controller = new InstrumentController();
-    $controller->save();
+    if (isset($_POST['id']) && $_POST['id'] !== '') {
+        $controller->edit($_POST['id']);
+    } else {
+        $controller->save();
+    }
+    header("Location: ./InstrumentList.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Instrumento</title>
+    <title><?= $instrument != null ? 'Editar' : 'Cadastrar' ?> Instrumento</title>
     <link rel="stylesheet" href="../../resources/styles/default.css">
 </head>
 <body>
-    <h2>Cadastro de Instrumento</h2>
+    <h2><?= $instrument != null ? 'Editar' : 'Cadastro de' ?> Instrumento</h2>
     <form action="" method="POST">
+        <?php if ($instrument != null): ?>
+            <input type="hidden" name="id" value="<?= $instrument->getId() ?>">
+        <?php endif; ?>
+
         <label>Nome</label>
-        <input type="text" name="name" required>
-        <br>
+        <input type="text" name="name" value="<?= $instrument != null ? htmlspecialchars($instrument->getName()) : '' ?>" required>
+
         <label>Preço</label>
-        <input type="number" name="price" step="0.01" min="0" required>
-        <br>
+        <input type="number" name="price" step="0.01" min="0" value="<?= $instrument != null ? $instrument->getPrice() : '' ?>" required>
+
         <label>Descrição</label>
-        <input type="text" name="description">
-        <br>
-        <button type="submit">Cadastrar</button>
+        <input type="text" name="description" value="<?= $instrument != null ? htmlspecialchars($instrument->getDescription()) : '' ?>">
+
+        <button type="submit"><?= $instrument != null ? 'Salvar alterações' : 'Cadastrar' ?></button>
     </form>
     <div class="nav-links">
         <a href="../index.html">Voltar a tela inicial</a>
