@@ -5,7 +5,7 @@ require_once __DIR__ . '/fetcher/PersonFetcher.php';
 
 class PersonDao {
 
-    private $table = 'persons';
+    private $table = 'person';
     private $db;
 
     public function __construct() {
@@ -13,7 +13,7 @@ class PersonDao {
     }
 
     public function save(Person $person) {
-        $sql = "INSERT INTO $this->table (name, adress_road, adress_number, cep, city, state) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO $this->table (name, address_road, address_number, cep, city, state) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([
             $person->getName(),
@@ -55,7 +55,7 @@ class PersonDao {
     }
 
     public function edit(Person $person, $id) {
-        $sql = "UPDATE $this->table SET name = ?, adress_road = ?, adress_number = ?, cep = ?, city = ?, state = ? WHERE id = ?";
+        $sql = "UPDATE $this->table SET name = ?, address_road = ?, address_number = ?, cep = ?, city = ?, state = ? WHERE id = ?";
         $ps = $this->db->prepare($sql);
         $ps->execute([
             $person->getName(),
