@@ -66,7 +66,7 @@ class InstrumentDao {
     }
 
     public function edit($instrument, $id) {
-        $sql = "UPDATE $this->table SET name = ?, descrition = ?, price = ? WHERE id = ?";
+        $sql = "UPDATE $this->table SET name = ?, description = ?, price = ? WHERE id = ?";
         $ps = $this->db->prepare($sql);
         $ps->execute([$instrument->getName(), $instrument->getDescription(), $instrument->getPrice(), $id]);
     }
