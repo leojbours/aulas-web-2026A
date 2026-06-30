@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $controller->save();
     }
-    header("Location: ./PesonList.php");
+    header("Location: ./PersonList.php");
     exit;
 }
 ?>
