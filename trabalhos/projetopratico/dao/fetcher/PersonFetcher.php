@@ -6,8 +6,8 @@ class PersonFetcher {
     public static function fetch($row) {
         return new Person(
             $row['name'],
-            $row['adress_road'],
-            $row['adress_number'],
+            $row['address_road'],
+            $row['address_number'],
             $row['cep'],
             $row['city'],
             $row['state'],
