@@ -17,8 +17,8 @@ class PersonController
     public function save() {
         $person = new Person(
             $_POST['name'],
-            $_POST['adress_road'],
-            $_POST['adress_number'],
+            $_POST['address_road'],
+            $_POST['address_number'],
             $_POST['cep'],
             $_POST['city'],
             $_POST['state']
@@ -30,8 +30,8 @@ class PersonController
     public function edit($id) {
         $person = new Person(
             $_POST['name'],
-            $_POST['adress_road'],
-            $_POST['adress_number'],
+            $_POST['address_road'],
+            $_POST['address_number'],
             $_POST['cep'],
             $_POST['city'],
             $_POST['state']

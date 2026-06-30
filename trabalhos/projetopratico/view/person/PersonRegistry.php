@@ -14,8 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $controller->save();
     }
-    header("Location: ./PersonList.php");
-    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -39,10 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="cep" id="cep" value="<?= $person != null ? htmlspecialchars($person->getCEP()) : '' ?>" required>
 
         <label>Rua</label>
-        <input type="text" name="adress_road" id="adress_road" value="<?= $person != null ? htmlspecialchars($person->getAdressRoad()) : '' ?>" required>
+        <input type="text" name="address_road" id="adress_road" value="<?= $person != null ? htmlspecialchars($person->getAdressRoad()) : '' ?>" required>
 
         <label>Número</label>
-        <input type="text" name="adress_number" value="<?= $person != null ? htmlspecialchars($person->getAdressNumber()) : '' ?>" required>
+        <input type="text" name="address_number" value="<?= $person != null ? htmlspecialchars($person->getAdressNumber()) : '' ?>" required>
 
         <label>Cidade</label>
         <input type="text" name="city" id="city" value="<?= $person != null ? htmlspecialchars($person->getCity()) : '' ?>" required>
@@ -68,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (data.erro) return;
 
-            document.getElementById('adress_road').value = data.logradouro;
+            document.getElementById('address_road').value = data.logradouro;
             document.getElementById('city').value = data.localidade;
             document.getElementById('state').value = data.uf;
         });

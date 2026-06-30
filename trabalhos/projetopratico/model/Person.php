@@ -16,7 +16,7 @@ class Person {
         $CEP,
         $city,
         $state,
-        $id
+        $id = null
     ) {
         $this->name = $name;
         $this->adressRoad = $adressRoad;
