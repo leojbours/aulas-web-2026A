@@ -43,11 +43,13 @@ $persons = $controller->findAll();
                         <td><?= $person->getCity() ?></td>
                         <td><?= $person->getState() ?></td>
                         <td>
-                            <a href="./PersonRegistry.php?id=<?= $person->getId() ?>">Editar</a>
-                            <form action="" method="POST" style="display:inline" onsubmit="return confirm('Tem certeza que deseja excluir?')">
-                                <input type="hidden" name="delete_id" value="<?= $person->getId() ?>">
-                                <button type="submit">Excluir</button>
-                            </form>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <a href="./PersonRegistry.php?id=<?= $person->getId() ?>">Editar</a>
+                                <form action="" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                                    <input type="hidden" name="delete_id" value="<?= $person->getId() ?>">
+                                    <button type="submit" style="padding: 0.25rem 0.75rem; font-size: 13px;">Excluir</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
