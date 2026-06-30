@@ -22,7 +22,7 @@
 
   <div class="nav-links">
     <a href="../index.html">Voltar a página inicial</a>
-    <a href="./NoticeList.php">Ver avisos</a>
+    <a href="./notice-list.html">Ver avisos</a>
   </div>
 
   <script>
@@ -39,7 +39,7 @@
 
       const data = await response.json();
       if (data.id) {
-        window.location.href = './NoticeList.php';
+        window.location.href = './notice-list.html';
       } else {
         document.getElementById('response').textContent = 'Erro ao cadastrar aviso.';
       }
