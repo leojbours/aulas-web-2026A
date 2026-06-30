@@ -45,7 +45,8 @@ $persons = $controller->findAll();
                         <td>
                             <div style="display: flex; align-items: center; gap: 0.5rem;">
                                 <a href="./PersonRegistry.php?id=<?= $person->getId() ?>">Editar</a>
-                                <form action="" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                                <form action="" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')"
+                                    style="background: none; border: none; padding: 0; margin: 0;">
                                     <input type="hidden" name="delete_id" value="<?= $person->getId() ?>">
                                     <button type="submit" style="padding: 0.25rem 0.75rem; font-size: 13px;">Excluir</button>
                                 </form>
