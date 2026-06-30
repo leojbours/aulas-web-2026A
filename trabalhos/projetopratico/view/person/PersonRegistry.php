@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="cep" id="cep" value="<?= $person != null ? htmlspecialchars($person->getCEP()) : '' ?>" required>
 
         <label>Rua</label>
-        <input type="text" name="address_road" id="adress_road" value="<?= $person != null ? htmlspecialchars($person->getAdressRoad()) : '' ?>" required>
+        <input type="text" name="address_road" id="address_road" value="<?= $person != null ? htmlspecialchars($person->getAdressRoad()) : '' ?>" required>
 
         <label>Número</label>
         <input type="text" name="address_number" value="<?= $person != null ? htmlspecialchars($person->getAdressNumber()) : '' ?>" required>
