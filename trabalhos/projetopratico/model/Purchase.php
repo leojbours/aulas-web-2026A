@@ -1,12 +1,10 @@
 <?php
-class Purchase
-{
+class Purchase{
     private $id;
     private $instrumentId;
     private $transactionId;
 
-    public function __construct($instrumentId, $transactionId, $id = null)
-    {
+    public function __construct($instrumentId, $transactionId, $id = null) {
         $this->instrumentId = $instrumentId;
         $this->transactionId = $transactionId;
         $this->id = $id;

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Avisos da Loja</title>
+  <link rel="stylesheet" href="../../resources/styles/default.css">
+</head>
+<body>
+  <h2>Avisos da Loja</h2>
+
+  <div class="nav-links" style="margin-bottom: 1.5rem;">
+    <button id="btn-add" type="button">Adicionar</button>
+    <button id="btn-refresh" type="button">Atualizar</button>
+  </div>
+
+  <table id="table">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+    </tbody>
+  </table>
+
+  <div class="nav-links">
+    <a href="../index.html">Voltar a página inicial</a>
+  </div>
+
+  <script>
+    const apiUrl = 'https://6a43deb16dba791499ab854a.mockapi.io/projetopratico/notices';
+
+    document.getElementById('btn-add').addEventListener('click', function () {
+      window.location.href = './notice-registry.html';
+    });
+
+    document.getElementById('btn-refresh').addEventListener('click', async function () {
+      loadNotices();
+    });
+
+    async function loadNotices() {
+      const tableBody = document.getElementById('table-body');
+      tableBody.innerHTML = '<tr><td colspan="2">Carregando...</td></tr>';
+
+      const response = await fetch(apiUrl);
+      const notices = await response.json();
+
+      if (notices.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="2">Nenhum aviso cadastrado.</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = '';
+      for (const notice of notices) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${notice.title}</td>
+          <td>${notice.description}</td>
+        `;
+        tableBody.appendChild(row);
+      }
+    }
+
+    loadNotices();
+  </script>
+</body>
+</html>

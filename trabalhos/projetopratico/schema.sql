@@ -22,3 +22,14 @@ CREATE TABLE IF NOT EXISTS purchases (
     CONSTRAINT FK_purchases_instrument FOREIGN KEY (instrument_id) REFERENCES instruments(id),
     CONSTRAINT FK_purchases_transaction FOREIGN KEY (transaction_id) REFERENCES transactions(id)
 );
+
+CREATE TABLE IF NOT EXISTS person (
+    id SERIAL,
+    name VARCHAR(255) NOT NULL,
+    address_road VARCHAR(255) NOT NULL,
+    address_number VARCHAR(15) NOT NULL,
+    cep VARCHAR(8) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state VARCHAR(127) NOT NULL,
+    CONSTRAINT pk_person PRIMARY KEY (id)
+);  

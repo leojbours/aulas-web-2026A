@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Aviso</title>
+  <link rel="stylesheet" href="../../resources/styles/default.css">
+</head>
+<body>
+  <h2>Cadastrar Aviso</h2>
+
+  <form id="notice-form">
+    <label>Título</label>
+    <input type="text" id="title" required>
+
+    <label>Descrição</label>
+    <input type="text" id="description" required>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <p id="response"></p>
+
+  <div class="nav-links">
+    <a href="../index.html">Voltar a página inicial</a>
+    <a href="./notice-list.html">Ver avisos</a>
+  </div>
+
+  <script>
+    document.getElementById('notice-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+
+      const response = await fetch('https://6a43deb16dba791499ab854a.mockapi.io/projetopratico/notices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, description }),
+      });
+
+      const data = await response.json();
+      if (data.id) {
+        window.location.href = './notice-list.html';
+      } else {
+        document.getElementById('response').textContent = 'Erro ao cadastrar aviso.';
+      }
+    });
+  </script>
+</body>
+</html>
