@@ -3,19 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Cadastrar Aviso</title>
+  <link rel="stylesheet" href="../../resources/styles/default.css">
 </head>
 <body>
-  <h1>Cadastrar Aviso</h1>
+  <h2>Cadastrar Aviso</h2>
 
-  <label>Título: <input type="text" id="title"></label><br><br>
-  <label>Descrição: <input type="text" id="description"></label><br><br>
-  <button id="btn">Cadastrar</button>
+  <form id="notice-form">
+    <label>Título</label>
+    <input type="text" id="title" required>
 
-  <pre id="response"></pre>
+    <label>Descrição</label>
+    <input type="text" id="description" required>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <p id="response"></p>
+
+  <div class="nav-links">
+    <a href="../index.html">Voltar a página inicial</a>
+    <a href="./NoticeList.php">Ver avisos</a>
+  </div>
 
   <script>
-    const button = document.getElementById('btn');
-    button.addEventListener('click', async function () {
+    document.getElementById('notice-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
       const title = document.getElementById('title').value;
       const description = document.getElementById('description').value;
 
@@ -26,7 +38,11 @@
       });
 
       const data = await response.json();
-      document.getElementById('response').textContent = JSON.stringify(data);
+      if (data.id) {
+        window.location.href = './NoticeList.php';
+      } else {
+        document.getElementById('response').textContent = 'Erro ao cadastrar aviso.';
+      }
     });
   </script>
 </body>
